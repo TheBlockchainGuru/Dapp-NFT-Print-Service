@@ -68,3 +68,40 @@
         }
     }
 }
+
+@media (max-width: 991px) {
+    .choose {
+    
+        .choose-container {
+            background: unset;
+            padding-left: 5vw;
+            padding-right: 5vw;
+        }
+    }
+}
+
+@media (max-width: 575px) {
+    .choose {
+        .choose-container {
+            
+            .choose-title {
+                word-break: break-all;  
+            }
+    
+            .choose-content {
+                .choose-nft-collection {
+                    width: 100%;
+                }
+    
+                .choose-nft-individual {
+                    width: 100%;
+                }
+    
+                .choose-nft-verify {
+                    // word-break: break-all;
+                }
+            }
+        }
+    }
+    
+}
