@@ -4,58 +4,70 @@
     min-height: 100vh;
     background-color: #f3a78f;
 
-    .home-title {
-        color: #FFFFFF;
-        text-transform: uppercase;
-        font-size: 56px ;
-        font-weight: bold;
-        font-family: Corben;
-    }
+    .home-container {
+        padding-top: 150px;
+        background: url('../../assets/images/Homepage_background.png');
+        background-size: 100% auto;
+        background-position: top center;
+        background-repeat: no-repeat;
+        max-width: 1000px;
+        height: 100vh;
+        margin-left: auto;
+        margin-right: auto;
 
-    .home-content {
-        .home-nft-code {
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            gap: 20px;
+        .home-title {
+            color: rgb(247,239,223);
+            text-transform: uppercase;
+            font-size: 56px ;
+            font-weight: bold;
+            font-family: Corben;
+        }
 
-            .home-nft-count {                
-                input {
-                    border-color: rgb(163, 217, 246);
-                    background-color: white;
-                    border-radius: 20px;
-                    padding: 16px;
-                    width: 240px;
-                }
+        .home-content {
+            .home-nft-code {
+                display: flex;
+                justify-content: center;
+                align-items: flex-start;
+                gap: 20px;
 
-                .home-nft-label {
-                    color: rgb(6,63,13);
-                    font-size: 14px;
-                    font-weight: bold;
-                    font-family: Roboto;
-                    text-align: left;
-                    padding-top: 8px;
+                .home-nft-count {                
+                    input {
+                        border-color: rgb(163, 217, 246);
+                        background-color: white;
+                        border-radius: 20px;
+                        padding: 16px;
+                        width: 240px;
+                    }
 
-                    .home-nft-label-highlight {
-                        color: #628C67;
-                        text-decoration: none;
+                    .home-nft-label {
+                        color: rgb(6,63,13);
+                        font-size: 14px;
+                        font-weight: bold;
+                        font-family: Roboto;
+                        text-align: left;
+                        padding-top: 8px;
+
+                        .home-nft-label-highlight {
+                            color: #628C67;
+                            text-decoration: none;
+                        }
                     }
                 }
-            }
 
-            .home-nft-confirm {
-                background-color: #628c67;
-                border: 0px solid rgb(63, 118, 82);
-                border-radius: 50px;
-                color: #FFFFFF;
-                cursor: pointer;
-                letter-spacing: .25em;
-                padding: 12px 32px;
-            }
+                .home-nft-confirm {
+                    background-color: #628c67;
+                    border: 0px solid rgb(63, 118, 82);
+                    border-radius: 50px;
+                    color: #FFFFFF;
+                    cursor: pointer;
+                    letter-spacing: .25em;
+                    padding: 12px 32px;
+                }
 
-            .home-nft-confirm:hover {
-                background: #3F7652;
-                border: 0px solid rgb(63, 118, 82);
+                .home-nft-confirm:hover {
+                    background: #3F7652;
+                    border: 0px solid rgb(63, 118, 82);
+                }
             }
         }
     }

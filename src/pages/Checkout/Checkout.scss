@@ -4,76 +4,88 @@
     min-height: 100vh;
     background-color: #f3a78f;
 
-    .checkout-title {
-        color: #FFFFFF;
-        text-transform: uppercase;
-        font-size: 56px ;
-        font-weight: bold;
-        font-family: Corben;
-    }
-
-    .checkout-content {
-        padding-top: 100px;
+    .checkout-container {
+        padding-top: 150px;
         padding-bottom: 200px;
-        display: flex;
-        justify-content: center;
+        background: url('../../assets/images/Checkout_background.png');
+        background-size: 100% auto;
+        background-position: top center;
+        background-repeat: no-repeat;
+        max-width: 1000px;
+        height: 100vh;
+        margin-left: auto;
+        margin-right: auto;
 
-        .checkout-form {
+        .checkout-title {
+            color: rgb(247,239,223);
+            text-transform: uppercase;
+            font-size: 56px ;
+            font-weight: bold;
+            font-family: Corben;
+        }
+
+        .checkout-content {
+            padding-top: 100px;
             display: flex;
-            flex-direction: column;
-            gap: 30px;
+            justify-content: center;
 
-            .checkout-form-row {
+            .checkout-form {
                 display: flex;
-                justify-content: space-between;
+                flex-direction: column;
                 gap: 30px;
 
-                .checkout-form-column {
-                    width: 100%;
+                .checkout-form-row {
                     display: flex;
-                    flex-direction: column;
-                    align-items: flex-start;
+                    justify-content: space-between;
+                    gap: 30px;
 
-                    label {
-                        color: rgb(255,245,240);
-                        font-family: Futura;
-                        line-height: 1;
-                    }
-
-                    input {
-                        background-color: rgba(255, 255, 255, .53);
-                        border-color: #000000;
-                        border-width: 0px 0px 2px 0px;
-                        border-radius: 20px;
-                        box-sizing: border-box;
-                        box-shadow:  none, 0 0 0 transparent;
-                        font-size: 18px;
-                        padding: 8px 8px 8px 12px;
+                    .checkout-form-column {
                         width: 100%;
-                    }
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-start;
 
-                    input:focus {
-                        background-color: transparent;
-                        border-width: 0px 0px 2px 0px;
-                    }
+                        label {
+                            color: rgb(255,245,240);
+                            font-family: Futura;
+                            line-height: 1;
+                        }
 
-                    input:hover {
-                        background-color: transparent;
-                        border-width: 0px 0px 2px 0px;
-                    }
-                    
-                    input:focus-visible {
-                        background-color: transparent;
-                        border-width: 0px 0px 1px 0px;
-                        outline: 0px;
-                    }
+                        input {
+                            background-color: rgba(255, 255, 255, .53);
+                            border-color: #000000;
+                            border-width: 0px 0px 2px 0px;
+                            border-radius: 20px;
+                            box-sizing: border-box;
+                            box-shadow:  none, 0 0 0 transparent;
+                            font-size: 18px;
+                            padding: 8px 8px 8px 12px;
+                            width: 100%;
+                        }
 
-                    .checkout-form-submit {
-                        align-self: center;
-                        background-color: #ef7c6b;
-                        color: #FFFFFF;
-                        padding: 12px 36px;
-                        border-radius: 24px;
+                        input:focus {
+                            background-color: transparent;
+                            border-width: 0px 0px 2px 0px;
+                        }
+
+                        input:hover {
+                            background-color: transparent;
+                            border-width: 0px 0px 2px 0px;
+                        }
+                        
+                        input:focus-visible {
+                            background-color: transparent;
+                            border-width: 0px 0px 1px 0px;
+                            outline: 0px;
+                        }
+
+                        .checkout-form-submit {
+                            align-self: center;
+                            background-color: #ef7c6b;
+                            color: #FFFFFF;
+                            padding: 12px 36px;
+                            border-radius: 24px;
+                        }
                     }
                 }
             }

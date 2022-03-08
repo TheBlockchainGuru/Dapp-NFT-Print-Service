@@ -4,55 +4,67 @@
     min-height: 100vh;
     background-color: #f3a78f;
 
-    .choose-title {
-        color: #FFFFFF;
-        text-transform: uppercase;
-        font-size: 56px ;
-        font-weight: bold;
-        font-family: Corben;
-    }
+    .choose-container {
+        padding-top: 150px;
+        background: url('../../assets/images/Choose_NFT_background.png');
+        background-size: 100% auto;
+        background-position: top center;
+        background-repeat: no-repeat;
+        max-width: 1000px;
+        height: 100vh;
+        margin-left: auto;
+        margin-right: auto;
 
-    .choose-content {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 16px;
-
-        .choose-nft-collection {
-            width: 360px;
-            select {
-                border-radius: 20px;
-                border-color: rgb(163, 217, 246);
-                font-size: 16px;
-                font-family: Helvetica;
-                padding: 16px;
-                width: 100%;
-            }
+        .choose-title {
+            color: rgb(247,239,223);
+            text-transform: uppercase;
+            font-size: 56px ;
+            font-weight: bold;
+            font-family: Corben;
         }
 
-        .choose-nft-individual {
-            width: 360px;
+        .choose-content {
             display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
 
-            input {
-                padding: 16px;
-                border-radius: 20px;
-                border-color: rgb(163, 217, 246);
-                background-color: white;
-                font-size: 16px;
-                font-family: Helvetica;
-                // padding: 16px;
-                width: 100%;
+            .choose-nft-collection {
+                width: 360px;
+                select {
+                    border-radius: 20px;
+                    border-color: rgb(163, 217, 246);
+                    font-size: 16px;
+                    font-family: Helvetica;
+                    padding: 16px;
+                    width: 100%;
+                }
             }
-        }
 
-        .choose-nft-verify {
-            background-color: #4b687e;
-            border-radius: 50px;
-            color: #FFFFFF;
-            cursor: pointer;
-            letter-spacing: .25em;
-            padding: 12px 32px;
+            .choose-nft-individual {
+                width: 360px;
+                display: flex;
+
+                input {
+                    padding: 16px;
+                    border-radius: 20px;
+                    border-color: rgb(163, 217, 246);
+                    background-color: white;
+                    font-size: 16px;
+                    font-family: Helvetica;
+                    // padding: 16px;
+                    width: 100%;
+                }
+            }
+
+            .choose-nft-verify {
+                background-color: #4b687e;
+                border-radius: 50px;
+                color: #FFFFFF;
+                cursor: pointer;
+                letter-spacing: .25em;
+                padding: 12px 32px;
+            }
         }
     }
 }
