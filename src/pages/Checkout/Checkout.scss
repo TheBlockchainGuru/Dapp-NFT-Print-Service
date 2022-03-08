@@ -92,3 +92,53 @@
         }
     }
 }
+
+@media (max-width: 991px) {
+    .checkout {
+        .checkout-container {
+            background: unset;
+            padding-left: 5vw;
+            padding-right: 5vw;
+        }
+    }
+}
+
+@media (max-width: 575px) {
+    .checkout {
+        .checkout-container {
+            padding-bottom: 300px;
+            
+            .checkout-title {
+                text-overflow: ellipsis;
+                overflow: hidden;
+                word-break: keep-all;
+            }
+    
+            .checkout-content {
+                .checkout-form {
+                    width: 100%;
+
+                    .checkout-form-row {
+                        flex-direction: column;
+                    
+                        .checkout-form-column {
+                            width: 100%;
+
+                            input {
+                                width: 100%;
+                            }
+
+                            .checkout-form-submit {
+                                align-self: center;
+                                background-color: #ef7c6b;
+                                color: #FFFFFF;
+                                padding: 12px 36px;
+                                border-radius: 24px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
