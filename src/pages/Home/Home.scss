@@ -72,3 +72,49 @@
         }
     }
 }
+
+@media (max-width: 991px) {
+    .home {
+        .home-container {
+            background: unset;
+            padding-left: 5vw;
+            padding-right: 5vw;
+        }
+    }
+}
+
+@media (max-width: 576px) {
+    .home {
+        .home-container {
+            .home-title {
+                font-size: 50px;
+                word-break: break-all;
+            }
+    
+            .home-content {
+                .home-nft-code {
+                    flex-direction: column;
+    
+                    .home-nft-count {         
+                        width: 100%; 
+
+                        input {
+                            width: 100%;
+                            box-sizing: border-box;
+                        }
+    
+                        .home-nft-label {
+                            word-break: break-all;
+                        }
+                    }
+    
+                    .home-nft-confirm {
+                        align-self: center;
+                        word-break: break-all;
+                        padding: 12px 32px;
+                    }
+                }
+            }
+        }
+    }
+}

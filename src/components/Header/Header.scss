@@ -39,3 +39,31 @@
         }
     }
 }
+
+@media (max-width: 991px) {
+    .header {
+        box-shadow: 0 0 .5vw rgba(0, 0, 0, 0.7), 0 0 5px rgba(0, 0, 0, 0.7);
+        padding: 0px 7.5vw;
+        
+        .logo {
+            // padding: 50[x] 0px;
+    
+            // a {
+            //     font-size: 3vw;
+            // }
+        }
+    
+        .links {
+            display: none;
+            gap: 12vw;
+            padding-right: 20vw;
+    
+            .link {
+                a {
+                    font-size: 1.6vw;
+                    letter-spacing: .08vw;
+                }
+            }
+        }
+    }
+}
