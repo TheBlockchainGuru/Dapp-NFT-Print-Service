@@ -1,5 +1,6 @@
 .header {
     align-items: center;
+    box-sizing: border-box;
     background: rgba(255, 255, 255, .3);
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.7), 0 0 5px rgba(0, 0, 0, 0.7);
     display: flex;
@@ -73,8 +74,40 @@
         .collapse {
             display: flex;
 
+            .collapse-link-icon {
+                width: 32px;
+                height: 32px;
+
+                img {
+                    width: 100%;
+                }
+            }
+
             .collapse-links {
+                
                 display: none;
+            }
+        }
+
+        .collapse:hover {
+            .collapse-links {
+                padding: 16px;
+                display: flex;
+                position: absolute;
+                top: 86px;
+                right: calc(5vw + 36px);
+                flex-direction: column;
+                gap: 16px;
+                z-index: 1;
+                background-color: #000000;
+
+                .collapse-link {
+                    a {
+                        text-decoration: none;
+                        color: #FFFFFF;
+                    }
+                }
+
             }
         }
     }
