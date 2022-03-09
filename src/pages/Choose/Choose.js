@@ -5,7 +5,7 @@ const Choose = () => {
         <div className="choose">
             <div className="choose-container">
                 <div className="choose-title">NFT Prints</div>
-                <div class="choose-content">
+                <div className="choose-content">
                     <div className="choose-nft-collection">
                         <select>
                             <option value="">NFT Collection</option>

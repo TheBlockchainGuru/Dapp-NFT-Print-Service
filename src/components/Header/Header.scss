@@ -38,6 +38,10 @@
             }
         }
     }
+
+    .collapse {
+        display: none;
+    }
 }
 
 @media (max-width: 991px) {
@@ -63,6 +67,14 @@
                     font-size: 1.6vw;
                     letter-spacing: .08vw;
                 }
+            }
+        }
+
+        .collapse {
+            display: flex;
+
+            .collapse-links {
+                display: none;
             }
         }
     }

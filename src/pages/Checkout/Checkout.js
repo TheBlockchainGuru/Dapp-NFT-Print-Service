@@ -5,7 +5,7 @@ const Checkout = () => {
         <div className="checkout">
             <div className="checkout-container">
                 <div className="checkout-title">NFT Prints</div>
-                <div class="checkout-content">
+                <div className="checkout-content">
                     <div className="checkout-form">
                         <div className="checkout-form-row">
                             <div className="checkout-form-column">

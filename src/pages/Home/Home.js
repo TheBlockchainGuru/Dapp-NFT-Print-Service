@@ -5,7 +5,7 @@ const Home = () => {
         <div className="home">
             <div className="home-container">
                 <div className="home-title">NFT Prints</div>
-                <div class="home-content">
+                <div className="home-content">
                     <div className="home-nft-code">
                         <div className="home-nft-count">
                             <input type="number" />

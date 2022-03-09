@@ -1,5 +1,6 @@
 import './Header.scss';
 import { Link } from 'react-router-dom';
+import TogglerImage from '../../assets/images/toggler.png';
 
 const Header = () => {
     return (
@@ -16,6 +17,22 @@ const Header = () => {
                 </div>
                 <div className="link">
                     <Link to="/checkout">Checkout</Link>
+                </div>
+            </div>
+            <div className="collapse">
+                <div className="collapse-link-icon">
+                    <img src={TogglerImage} />
+                </div>
+                <div className="collapse-links">
+                    <div className="collapse-link">
+                        <Link to="/">Home</Link>
+                    </div>
+                    <div className="collapse-link">
+                        <Link to="/choose">Choose NFT</Link>
+                    </div>
+                    <div className="collapse-link">
+                        <Link to="/checkout">Checkout</Link>
+                    </div>
                 </div>
             </div>
         </div>
