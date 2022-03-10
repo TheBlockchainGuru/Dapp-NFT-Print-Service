@@ -1,6 +1,16 @@
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Checkout.scss';
 
-const Checkout = () => {
+const Checkout = ({ connect, address }) => {
+
+    const navigate = useNavigate(); 
+    useEffect ( () => {
+        
+        if(!address) {
+            navigate('/');
+        }
+    } )
     return (
         <div className="checkout">
             <div className="checkout-container">
