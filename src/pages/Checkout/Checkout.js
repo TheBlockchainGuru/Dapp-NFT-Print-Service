@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Web3 from 'web3';
 import './Checkout.scss';
 
 const Checkout = ({ connect, address }) => {
@@ -11,6 +12,11 @@ const Checkout = ({ connect, address }) => {
             navigate('/');
         }
     } )
+
+    const onPayNow = () => {
+        console.log(window.web3)
+    }
+
     return (
         <div className="checkout">
             <div className="checkout-container">
@@ -59,7 +65,7 @@ const Checkout = ({ connect, address }) => {
                         </div>
                         <div className="checkout-form-row">
                             <div className="checkout-form-column">
-                                <div className="checkout-form-submit">Pay Now</div>
+                                <div className="checkout-form-submit" onClick={onPayNow}>Pay Now</div>
                             </div>
                         </div>
                     </div>

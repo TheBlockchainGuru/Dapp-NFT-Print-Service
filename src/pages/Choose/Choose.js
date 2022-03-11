@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { getNftMetadata, getNftsOfOwner } from '../../utils/alchemy';
 import './Choose.scss';
 
 const contracts = require('../../config/nfts.json');
 
-const Choose = () => {
+const Choose = ({setNft}) => {
 
     const [collections, setCollections] 
             = useState([
@@ -12,6 +13,7 @@ const Choose = () => {
             ])
     const [collection, setCollection] = useState('');
     const [tokenID, setTokenID] = useState('');
+    const navigate = useNavigate();
 
     useEffect( () => {
         let newCollections = [...collections];
@@ -34,9 +36,8 @@ const Choose = () => {
 
     const onVerify = async () => {
         const nftData = await getNftMetadata(collection, tokenID)
-
-
-        console.log(nftData)
+        setNft(nftData);
+        navigate('/checkout')
     }
 
     const onSelectCollection = (e) => {

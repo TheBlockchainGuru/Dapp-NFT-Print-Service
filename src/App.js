@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react';
 function App() {
 
   const [address, setAddress] = useState('');
+  const [nft, setNft] = useState({});
 
   useEffect(async () => {
     await onConnect();
@@ -31,6 +32,10 @@ function App() {
     }
   }
 
+  const onSetNFT = (e) => {
+    setNft(e);
+  }
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -45,7 +50,13 @@ function App() {
                 address={address}
               /> }>
           </Route>
-          <Route path="/choose" element={ <Choose /> }></Route>
+          <Route 
+            path="/choose" 
+            element={ 
+              <Choose 
+                setNft={e => onSetNFT(e)}
+              /> }>
+          </Route>
         </Routes>
         <Footer />
       </BrowserRouter>
