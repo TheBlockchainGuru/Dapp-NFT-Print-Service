@@ -26,9 +26,12 @@
     .links {
         display: flex;
         justify-content: center;
+        align-items: center;
         gap: 100px;
 
         .link {
+            cursor: pointer;
+
             a {
                 color: #000000;
                 font-family: Helvetica;
@@ -38,7 +41,11 @@
             }
 
             .connect {
-                cursor: pointer;
+                padding: 15px 30px;
+                /* border: 1px solid; */
+                border-radius: 40px;
+                color: #FFFFFF;
+                background-color: #628c67;
             }
         }
     }

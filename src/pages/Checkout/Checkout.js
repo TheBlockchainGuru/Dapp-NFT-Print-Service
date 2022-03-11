@@ -1,20 +1,47 @@
+import { ethers } from 'ethers';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Web3 from 'web3';
+import { config } from '../../config/config';
 import './Checkout.scss';
 
-const Checkout = ({ connect, address }) => {
+const Checkout = ({ connect, address, setNft, nft }) => {
 
     const navigate = useNavigate(); 
     useEffect ( () => {
         
-        if(!address) {
+        if(!address || !nft || Object.keys(nft).length === 0) {
             navigate('/');
         }
     } )
 
-    const onPayNow = () => {
-        console.log(window.web3)
+    const onPayNow = async () => {
+        if(!nft) return;
+        const web3 = window.web3;
+
+        const nonce = await web3.eth.getTransactionCount(address, 'latest'); // nonce starts counting from 0
+        const gas   = await web3.eth.estimateGas({
+            from: address,
+            to: config.receiver_address,
+            nonce: nonce
+        })
+        const gasPrice  = await web3.eth.getGasPrice();
+        const value     = ethers.BigNumber.from(config.value);
+        web3.eth.sendTransaction({
+            from: address,
+            to: config.receiver_address,
+            nonce: nonce,
+            gas: gas,
+            value: value,
+            chainId: config.chain_id, 
+        })
+        .once('confirmation', (e) => {
+            setNft({});
+            navigate('/choose');
+        })
+        .once('send', (e) => {
+            
+        })
     }
 
     return (

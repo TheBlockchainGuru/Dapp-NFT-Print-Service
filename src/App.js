@@ -46,14 +46,17 @@ function App() {
             path="/checkout" 
             element={ 
               <Checkout 
+                nft={nft}
                 connect={onConnect} 
                 address={address}
+                setNft={e => onSetNFT(e)}
               /> }>
           </Route>
           <Route 
             path="/choose" 
             element={ 
               <Choose 
+                nft={nft}
                 setNft={e => onSetNFT(e)}
               /> }>
           </Route>
