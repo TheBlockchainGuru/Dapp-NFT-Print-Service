@@ -13,6 +13,8 @@ const Choose = ({setNft}) => {
             ])
     const [collection, setCollection] = useState('');
     const [tokenID, setTokenID] = useState('');
+    const [collectionError, setCollectionError] = useState(false);
+    const [tokenError, setTokenError] = useState(false);
     const navigate = useNavigate();
 
     useEffect( () => {
@@ -35,17 +37,42 @@ const Choose = ({setNft}) => {
     }, [] )
 
     const onVerify = async () => {
-        const nftData = await getNftMetadata(collection, tokenID)
-        setNft(nftData);
-        navigate('/checkout')
+
+        if(!collection) {
+            setCollectionError(true)
+        } else if(!tokenID) {
+            setTokenError(true)
+        } else {
+            const nftData = await getNftMetadata(collection, tokenID)
+            if(!nftData) {
+                alert('Loading NFT information failed')
+            } else if(nftData.error) {
+                alert('Token does not exist')
+            } else {
+                setNft(nftData);
+                navigate('/checkout')
+            }
+        }
     }
 
     const onSelectCollection = (e) => {
         setCollection(e.target.value);
+
+        if(e.target.value) {
+            setCollectionError(false);
+        } else {
+            setCollectionError(true);
+        }
     }
 
     const onSetTokenID = (e) => {
         setTokenID(e.target.value);
+
+        if(e.target.value) {
+            setTokenError(false);
+        } else {
+            setTokenError(true);
+        }
     } 
 
     return (
@@ -57,9 +84,21 @@ const Choose = ({setNft}) => {
                         <select onChange={onSelectCollection}>
                             {collections}
                         </select>
+                        <div 
+                            style={{
+                                display: collectionError ? 'block' : 'none'
+                            }} 
+                            className="choose-nft-collection-error"
+                        >This field is required.</div>
                     </div>
                     <div className="choose-nft-individual">
                         <input type="text" value={tokenID} onChange={onSetTokenID} />
+                        <div 
+                            style={{
+                                display: tokenError ? 'block' : 'none'
+                            }}
+                            className="choose-nft-individual-error"
+                        >This field is required.</div>
                     </div>
                     <div className="choose-nft-verify" onClick={onVerify}>Verify Ownerships</div>
                 </div>
