@@ -47,6 +47,24 @@
                 }
             }
 
+            .choose-nft-wallet {
+                width: 360px;
+                display: flex;
+                flex-direction: column;
+                
+                input {
+                    padding: 16px;
+                    border-radius: 20px;
+                    border-color: rgb(163, 217, 246);
+                    background-color: white;
+                    font-size: 16px;
+                    font-family: Helvetica;
+                    // padding: 16px;
+                    width: 100%;
+                    box-sizing: border-box;
+                }
+            }
+
             .choose-nft-individual {
                 width: 360px;
                 display: flex;

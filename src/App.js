@@ -56,6 +56,7 @@ function App() {
             path="/choose" 
             element={ 
               <Choose 
+                address={address}
                 nft={nft}
                 setNft={e => onSetNFT(e)}
               /> }>
