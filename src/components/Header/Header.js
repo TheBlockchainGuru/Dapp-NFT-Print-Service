@@ -30,7 +30,7 @@ const Header = ({ connect, address }) => {
                 </div>
                 <div className="link">
                     {address
-                        ?   address
+                        ?   <div className="connect">{String(address).substring(0, 6) + "..." + String(address).substring(38)}</div>
                         :   <div className="connect" onClick={onConnectWallet}>Connect Wallet</div>
                     }
                 </div>
@@ -50,7 +50,11 @@ const Header = ({ connect, address }) => {
                         <Link to="/checkout">Checkout</Link>
                     </div>
                     <div className="collapse-link">
-                        <div className="connect" onClick={onConnectWallet}>Connect Wallet</div>
+                        {address 
+                        ?   <div className="connect">{String(address).substring(0, 6) + "..." + String(address).substring(38)}</div>
+                        :   <div className="connect" onClick={onConnectWallet}>Connect Wallet</div>
+                        }
+                        
                     </div>
                 </div>
             </div>
