@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getNftMetadata, getNftsOfOwner } from '../../utils/alchemy';
+import { getSingleContract } from '../../utils/opensea';
 import { useMoralisWeb3Api } from "react-moralis";
 import {NotificationContainer, NotificationManager} from 'react-notifications';
 import './Choose.scss';
@@ -83,23 +84,40 @@ const Choose = ({address, setNft}) => {
     const onChangeContract = async (e) => {
         const selContract = e.target.value;
         setContract(selContract)
-        const options = {
-            address: selContract,
-            chain: "eth",
-        }
-    
-        const metaData = await Web3Api.token.getNFTMetadata(options);
-        if(Object.keys(metaData).length !== 0) { 
+
+        const metaData = await getSingleContract(selContract);
+
+        if(Object.keys(metaData).length !== 0) {
             const isExist = collections.findIndex( e => e.value == selContract )
             if(isExist < 0) {
                 let newCollections = [...collections];
-                newCollections.push({name: metaData.name, value: selContract})
+                newCollections.push({name: metaData.data.collection.name, value: selContract})
                 setCollections(newCollections)
             }
 
             colRef.current.value = selContract;
             setCollection(selContract);
+
+        } else {
+            NotificationManager.error('NFT collection does not exist or something failed', 'Error message', 5000);
         }
+        // const options = {
+        //     address: selContract,
+        //     chain: "eth",
+        // }
+    
+        // const metaData = await Web3Api.token.getNFTMetadata(options);
+        // if(Object.keys(metaData).length !== 0) { 
+        //     const isExist = collections.findIndex( e => e.value == selContract )
+        //     if(isExist < 0) {
+        //         let newCollections = [...collections];
+        //         newCollections.push({name: metaData.name, value: selContract})
+        //         setCollections(newCollections)
+        //     }
+
+        //     colRef.current.value = selContract;
+        //     setCollection(selContract);
+        // }
     }
 
     return (
