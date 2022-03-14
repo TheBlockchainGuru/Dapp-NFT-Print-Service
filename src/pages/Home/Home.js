@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Modal from 'react-modal';
+import { database } from '../../config/firebase';
 import './Home.scss';
 import RoadMapImage from '../../assets/images/Pop-up_window.png';
 
@@ -17,8 +18,10 @@ const customStyles = {
     },
 };
 
-const Home = () => {
+const Home = ({databaseKey, log, changeLog}) => {
     const [showRoadMap, setShowRoadMap] = useState(true)
+    const [code, setCode] = useState('');
+    const navigate = useNavigate();
 
     // useEffect( () => {
     //     // if(showRoadMap) {
@@ -32,6 +35,19 @@ const Home = () => {
 
     const onHideRoadMap = () => {
         setShowRoadMap(false);
+    }
+
+    const onEnter = () => {
+        const newRef = database.ref('log/' + databaseKey);
+        log.code = code
+
+        newRef.update(log)
+        changeLog(log)
+        navigate('/choose')
+    }
+
+    const onChangeCode = (e) => {
+        setCode(e.target.value)
     }
 
     return (
@@ -63,10 +79,10 @@ const Home = () => {
                 <div className="home-content">
                     <div className="home-nft-code">
                         <div className="home-nft-count">
-                            <input type="text" />
+                            <input type="text" value={code} onChange={onChangeCode} />
                             <div className="home-nft-label">If you don't have a code: Click <Link to="/choose" className="home-nft-label-highlight">Here</Link></div>
                         </div>
-                        <div className="home-nft-confirm"><Link to="/choose">Enter</Link></div>
+                        <div className="home-nft-confirm" onClick={onEnter}>Enter</div>
                     </div>
                 </div>
             </div>

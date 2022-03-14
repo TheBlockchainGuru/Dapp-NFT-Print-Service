@@ -7,11 +7,14 @@ import Footer from './components/Footer/Footer';
 import Checkout from './pages/Checkout/Checkout';
 import Choose from './pages/Choose/Choose';
 import { useEffect, useState } from 'react';
+import { database } from './config/firebase';
 
 function App() {
 
   const [address, setAddress] = useState('');
   const [nft, setNft] = useState({});
+  const [log, setLog] = useState({});
+  const [databaseKey, setDatabaseKey] = useState('');
 
   useEffect(async () => {
     await onConnect();
@@ -23,12 +26,26 @@ function App() {
       await window.ethereum.enable();
       const accounts = await window.web3.eth.getAccounts();
       setAddress(accounts[0])
+      onSaveData(accounts[0])
     } else if(window.web3) {
       window.web3 = new Web3(window.web3.currentProvider)
       const accounts = await window.web3.eth.getAccounts();
       setAddress(accounts[0])
+      onSaveData(accounts[0])
     } else {
         window.alert('Non-Ethereum browser detected. Your should consider trying MetaMask!')
+    }
+  }
+
+  const onSaveData = (address) => {
+    if(!databaseKey) {
+      const today = new Date();
+      const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+      const newRef = database.ref('log').push()
+      newRef.set({ time: time, wallet: address });
+
+      setDatabaseKey(newRef.key);      
+      setLog({ time: time, wallet: address });
     }
   }
 
@@ -36,12 +53,28 @@ function App() {
     setNft(e);
   }
 
+  const onChangeLog = (e) => {
+    setLog(e);
+  }
+
   return (
     <div className="App">
       <BrowserRouter>
-        <Header connect={onConnect} address={address} />
+        <Header 
+          connect={onConnect} 
+          address={address}
+          changeLog={e => onChangeLog(e)}
+        />
         <Routes>
-          <Route path="/" element={ <Home /> }></Route>
+          <Route 
+            path="/" 
+            element={ 
+              <Home 
+                databaseKey={databaseKey} 
+                log={log} 
+                changeLog={e => onChangeLog(e)}
+              /> 
+            }></Route>
           <Route 
             path="/checkout" 
             element={ 
@@ -50,6 +83,9 @@ function App() {
                 connect={onConnect} 
                 address={address}
                 setNft={e => onSetNFT(e)}
+                log={log}
+                databaseKey={databaseKey}
+                changeLog={e => onChangeLog(e)}
               /> }>
           </Route>
           <Route 
@@ -59,6 +95,9 @@ function App() {
                 address={address}
                 nft={nft}
                 setNft={e => onSetNFT(e)}
+                log={log}
+                databaseKey={databaseKey}
+                changeLog={e => onChangeLog(e)}
               /> }>
           </Route>
         </Routes>

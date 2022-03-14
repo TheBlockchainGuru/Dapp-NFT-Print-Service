@@ -4,10 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import Web3 from 'web3';
 import { config } from '../../config/config';
 import {NotificationContainer, NotificationManager} from 'react-notifications';
+import { database } from '../../config/firebase';
 import './Checkout.scss';
 import 'react-notifications/lib/notifications.css';
 
-const Checkout = ({ connect, address, setNft, nft }) => {
+const Checkout = ({ connect, address, setNft, nft, log, databaseKey, changeLog }) => {
 
     const navigate = useNavigate(); 
     useEffect ( () => {
@@ -40,7 +41,13 @@ const Checkout = ({ connect, address, setNft, nft }) => {
         .once('confirmation', (e) => {
             NotificationManager.success('Sent', '', 5000);
             setNft({});
-            navigate('/choose');
+            log.pay = parseInt(config.value) / 1000000000000000000;
+
+            database.ref('log/' + databaseKey)
+                    .update(log)
+
+            changeLog({});
+            navigate('/');
         })
         .once('send', (e) => {
             NotificationManager.info('Send', '', 5000);

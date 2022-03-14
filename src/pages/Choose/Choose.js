@@ -4,12 +4,13 @@ import { getNftMetadata, getNftsOfOwner } from '../../utils/alchemy';
 import { getSingleContract } from '../../utils/opensea';
 import { useMoralisWeb3Api } from "react-moralis";
 import {NotificationContainer, NotificationManager} from 'react-notifications';
+import { database } from '../../config/firebase';
 import './Choose.scss';
 import 'react-notifications/lib/notifications.css';
 
 const contracts = require('../../config/nfts.json');
 
-const Choose = ({address, setNft}) => {
+const Choose = ({address, setNft, log, databaseKey, changeLog}) => {
     const Web3Api = useMoralisWeb3Api();
     const colRef = useRef(null);
     const [collections, setCollections] 
@@ -45,8 +46,8 @@ const Choose = ({address, setNft}) => {
         } else if(!tokenID) {
             setTokenError(true)
         } else {
-            // const ownedNfts = await getNftsOfOwner(address);
-            const ownedNfts = await getNftsOfOwner('0x9ab5a9572db323c70a94a1b043759b3490f6f51d');
+            const ownedNfts = await getNftsOfOwner(address);
+            // const ownedNfts = await getNftsOfOwner('0x695448aeca6fe84aa8c03b1658488247df4bab42');
             const nftData   = await getNftMetadata(collection, tokenID);
 
             if(!ownedNfts.ownedNfts.length) {
@@ -59,13 +60,22 @@ const Choose = ({address, setNft}) => {
                 } else {
                     const nftIndex = ownedNfts.ownedNfts.findIndex(ele => 
                         ele.contract.address == nftData.contract.address &&
-                        ele.id.tokenId == nftData.id.tokenId
+                        parseInt(ele.id.tokenId, 16) == nftData.id.tokenId
                     );
                     if(nftIndex <= -1) {
                         NotificationManager.error('That\' not your NFT', 'Error message', 5000);
                     } else {
                         setNft(nftData);
                         navigate('/checkout')
+
+                        if(databaseKey) {
+                            log.contract = contract;
+                            log.name = nftData.title;
+
+                            database.ref('log/' + databaseKey)
+                                    .update(log)
+                            changeLog(log);
+                        }
                     }
                 }    
             }
