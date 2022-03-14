@@ -3,7 +3,9 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Web3 from 'web3';
 import { config } from '../../config/config';
+import {NotificationContainer, NotificationManager} from 'react-notifications';
 import './Checkout.scss';
+import 'react-notifications/lib/notifications.css';
 
 const Checkout = ({ connect, address, setNft, nft }) => {
 
@@ -36,16 +38,24 @@ const Checkout = ({ connect, address, setNft, nft }) => {
             chainId: config.chain_id, 
         })
         .once('confirmation', (e) => {
+            NotificationManager.success('Sent', '', 5000);
             setNft({});
             navigate('/choose');
         })
         .once('send', (e) => {
-            
+            NotificationManager.info('Send', '', 5000);
+        })
+        .once('sending', (e) => {
+            NotificationManager.info('Sending now', '', 5000);
+        })
+        .once('error', (e) => {
+            NotificationManager.error('Transaction failed', '', 5000);
         })
     }
 
     return (
         <div className="checkout">
+            <NotificationContainer/>
             <div className="checkout-container">
                 <div className="checkout-title">NFT Prints</div>
                 <div className="checkout-content">
