@@ -26,6 +26,10 @@ const Choose = ({address, setNft, log, databaseKey, changeLog}) => {
     const navigate = useNavigate();
 
     useEffect( () => {
+
+        if( !address ) {
+            navigate('/');
+        }
         let newCollections = [...collections];
 
         for(let i in contracts) {
