@@ -20,6 +20,12 @@ const Header = ({ connect, address }) => {
             </div>
             <div className="links">
                 <div className="link">
+                    NFT Prints are exclusive, high-quality, framed prints in about an inch passe-partout. 
+                    It will elegantly display your piece of art alongside the collection name and token ID of your NFT. 
+                    The official NFT Prints name on it will prove that you've own it at some point in time to all its gazers.
+                    - By the NFT space, for the NFT space.
+                </div>
+                {/* <div className="link">
                     <Link to="/">Home</Link>
                 </div>
                 <div className="link">
@@ -27,7 +33,7 @@ const Header = ({ connect, address }) => {
                 </div>
                 <div className="link">
                     <Link to="/checkout">Checkout</Link>
-                </div>
+                </div> */}
                 <div className="link">
                     {address
                         ?   <div className="connect">{String(address).substring(0, 6) + "..." + String(address).substring(38)}</div>
@@ -40,7 +46,7 @@ const Header = ({ connect, address }) => {
                     <img src={TogglerImage} />
                 </div>
                 <div className="collapse-links">
-                    <div className="collapse-link">
+                    {/* <div className="collapse-link">
                         <Link to="/">Home</Link>
                     </div>
                     <div className="collapse-link">
@@ -48,7 +54,7 @@ const Header = ({ connect, address }) => {
                     </div>
                     <div className="collapse-link">
                         <Link to="/checkout">Checkout</Link>
-                    </div>
+                    </div> */}
                     <div className="collapse-link">
                         {address 
                         ?   <div className="connect">{String(address).substring(0, 6) + "..." + String(address).substring(38)}</div>

@@ -10,7 +10,7 @@
     width: 100%;
 
     .logo {
-        padding: 50px 0px;
+        padding: 0px 0px;
 
         a {
             text-decoration: none;
@@ -20,6 +20,7 @@
             font-family: Kanit,sans-serif;
             font-weight: bold;
             letter-spacing: 0em;
+            white-space: nowrap;
         }
     }
 
@@ -27,7 +28,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 100px;
+        // gap: 100px;
 
         .link {
             cursor: pointer;
@@ -46,7 +47,13 @@
                 border-radius: 40px;
                 color: #FFFFFF;
                 background-color: #628c67;
+                white-space: nowrap;
             }
+        }
+
+        .link:first-of-type {
+            padding: 30px 10px;
+            box-sizing: border-box;
         }
     }
 

@@ -4,6 +4,13 @@
     min-height: 100vh;
     background-color: #f3a78f;
 
+    .roadmap {
+        // position: absolute;
+        img {
+            width: 100%;
+        }
+    }
+
     .home-container {
         padding-top: 150px;
         background: url('../../assets/images/Homepage_background.png');
@@ -62,6 +69,10 @@
                     cursor: pointer;
                     letter-spacing: .25em;
                     padding: 12px 32px;
+                    
+                    a {
+                        text-decoration: none;
+                    }
                 }
 
                 .home-nft-confirm:hover {
