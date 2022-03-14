@@ -73,24 +73,11 @@ const Choose = ({address, setNft}) => {
 
     const onSelectCollection = (e) => {
         setCollection(e.target.value);
-
-        if(e.target.value) {
-            setCollectionError(false);
-            setContract(e.target.value)
-
-        } else {
-            setCollectionError(true);
-        }
+        setContract(e.target.value);
     }
 
     const onSetTokenID = (e) => {
         setTokenID(e.target.value);
-
-        if(e.target.value) {
-            setTokenError(false);
-        } else {
-            setTokenError(true);
-        }
     } 
 
     const onChangeContract = async (e) => {
@@ -102,9 +89,7 @@ const Choose = ({address, setNft}) => {
         }
     
         const metaData = await Web3Api.token.getNFTMetadata(options);
-
         if(Object.keys(metaData).length !== 0) { 
-            // console.log(metaData)
             const isExist = collections.findIndex( e => e.value == selContract )
             if(isExist < 0) {
                 let newCollections = [...collections];
