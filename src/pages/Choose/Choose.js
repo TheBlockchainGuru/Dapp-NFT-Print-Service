@@ -50,8 +50,8 @@ const Choose = ({address, setNft, log, databaseKey, changeLog}) => {
         } else if(!tokenID) {
             setTokenError(true)
         } else {
-            // const ownedNfts = await getNftsOfOwner(address);
-            const ownedNfts = await getNftsOfOwner('0x695448aeca6fe84aa8c03b1658488247df4bab42');
+            const ownedNfts = await getNftsOfOwner(address);
+            // const ownedNfts = await getNftsOfOwner('0x695448aeca6fe84aa8c03b1658488247df4bab42');
             const nftData   = await getNftMetadata(collection, tokenID);
 
             if(!ownedNfts.ownedNfts.length) {
