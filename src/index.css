@@ -35,3 +35,27 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.ReactModal__Overlay {
+  background-color: transparent !important;
+}
+
+
+@media (max-width: 772px) {
+  .ReactModal__Content {
+    inset: calc(50vh - 50vw) auto auto auto !important;
+  }
+  
+  .ReactModal__Content img {
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  .roadmap-close {
+    width: 11vw !important;
+    right: 2vw !important;
+    height: 11vw !important;
+    top: 0.5vw !important;
+  }
+    
+}

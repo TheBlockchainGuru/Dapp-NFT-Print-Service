@@ -12,8 +12,10 @@ const customStyles = {
         right: 'auto',
         bottom: 'auto',
         marginRight: '0px',
-        width: '100%',
-        height: '100%',
+        padding: '0px',
+        left: 'calc(50% - 386px)',
+        top: 'calc(50% - 325px)',
+        backgroundColor: 'transparent',
         boxSizing: 'border-box',
     },
 };
@@ -65,13 +67,14 @@ const Home = ({databaseKey, log, changeLog}) => {
                         onClick={onHideRoadMap}
                         style={{ 
                             position: 'absolute',
-                            width: '11vw',
-                            height: '13vh',
-                            right: '2vw',
+                            right: '13px',
+                            top: '3px',
+                            width: '90px',
+                            height: '90px',
                             cursor: 'pointer'
                         }}
                     ></div>
-                    <img src={RoadMapImage} style={{ width: '100%', height: '100%' }} />
+                    <img src={RoadMapImage} style={{ width: '772px', height: '697px' }} />
                 </div>
             </Modal>
             <div className="home-container">
