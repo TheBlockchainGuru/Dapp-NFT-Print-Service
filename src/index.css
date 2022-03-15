@@ -22,6 +22,11 @@
   font-family: Futura;
   src: url('./assets/fonts/Futura/Futura\ Book\ font.ttf');
 }
+
+@font-face {
+  font-family: Gothic;
+  src: url('./assets/fonts/Gothic/FRAHV.TTF');
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

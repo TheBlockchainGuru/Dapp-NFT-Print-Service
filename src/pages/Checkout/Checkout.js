@@ -14,7 +14,7 @@ const Checkout = ({ connect, address, setNft, nft, log, databaseKey, changeLog, 
     useEffect ( () => {
         console.log(window.web3)
         if(!address || !nft || Object.keys(nft).length === 0) {
-            navigate('/');
+            // navigate('/');
         }
     } )
 
@@ -69,6 +69,10 @@ const Checkout = ({ connect, address, setNft, nft, log, databaseKey, changeLog, 
             <NotificationContainer/>
             <div className="checkout-container">
                 <div className="checkout-title">NFT Prints</div>
+                <div className="checkout-price">
+                    <div className="checkout-price-main">Price: 0.099Ξ</div>
+                    <div className="checkout-price-ship">Shipping: 0.005Ξ</div>
+                </div>
                 <div className="checkout-content">
                     <div className="checkout-form">
                         <div className="checkout-form-row">

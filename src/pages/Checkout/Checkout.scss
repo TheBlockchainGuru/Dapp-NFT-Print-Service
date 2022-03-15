@@ -24,8 +24,28 @@
             font-family: Corben;
         }
 
+        .checkout-price {
+            font-family: Gothic;
+            display: inline-block;
+            align-self: center;
+            color: #324553;
+            text-align: left;
+            padding-top: 20px;
+            // padding-bottom: 20px;
+
+            .checkout-price-main {
+                font-size: 44px;
+                line-height: 40px;
+            }
+
+            .checkout-price-ship {
+                font-size: 24px;
+                line-height: 28px;
+            }
+        }
+
         .checkout-content {
-            padding-top: 100px;
+            padding-top: 50px;
             display: flex;
             justify-content: center;
 
