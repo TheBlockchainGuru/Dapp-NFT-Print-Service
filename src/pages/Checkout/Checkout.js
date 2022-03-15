@@ -1,5 +1,5 @@
 import { ethers } from 'ethers';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Web3 from 'web3';
 import { config } from '../../config/config';
@@ -8,11 +8,11 @@ import { database } from '../../config/firebase';
 import './Checkout.scss';
 import 'react-notifications/lib/notifications.css';
 
-const Checkout = ({ connect, address, setNft, nft, log, databaseKey, changeLog }) => {
+const Checkout = ({ connect, address, setNft, nft, log, databaseKey, changeLog, changeBlocking }) => {
 
     const navigate = useNavigate(); 
     useEffect ( () => {
-        
+        console.log(window.web3)
         if(!address || !nft || Object.keys(nft).length === 0) {
             navigate('/');
         }
@@ -20,7 +20,7 @@ const Checkout = ({ connect, address, setNft, nft, log, databaseKey, changeLog }
 
     const onPayNow = async () => {
         if(!nft) return;
-        const web3 = window.web3;
+        let web3 = window.web3;
 
         const nonce = await web3.eth.getTransactionCount(address, 'latest'); // nonce starts counting from 0
         const gas   = await web3.eth.estimateGas({
@@ -30,13 +30,17 @@ const Checkout = ({ connect, address, setNft, nft, log, databaseKey, changeLog }
         })
         const gasPrice  = await web3.eth.getGasPrice();
         const value     = ethers.BigNumber.from(config.value);
+        web3.eth.defaultChain = config.chain_id;
+
         web3.eth.sendTransaction({
             from: address,
             to: config.receiver_address,
             nonce: nonce,
             gas: gas,
             value: value,
-            chainId: config.chain_id, 
+        })
+        .once('transactionHash', function(hash){ 
+            changeBlocking(true);
         })
         .once('confirmation', (e) => {
             NotificationManager.success('Sent', '', 5000);
@@ -47,16 +51,16 @@ const Checkout = ({ connect, address, setNft, nft, log, databaseKey, changeLog }
                     .update(log)
 
             changeLog({});
+            changeBlocking(false);
             navigate('/');
         })
-        .once('send', (e) => {
-            NotificationManager.info('Send', '', 5000);
-        })
-        .once('sending', (e) => {
-            NotificationManager.info('Sending now', '', 5000);
-        })
         .once('error', (e) => {
-            NotificationManager.error('Transaction failed', '', 5000);
+            NotificationManager.error(e.message, '', 10000);
+            setTimeout( () => {
+                changeLog({});
+                changeBlocking(false);
+                navigate('/');
+            }, 10000)
         })
     }
 

@@ -6,6 +6,9 @@ import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Checkout from './pages/Checkout/Checkout';
 import Choose from './pages/Choose/Choose';
+import Access from './pages/Access/Access';
+import BlockUi from 'react-block-ui';
+import 'react-block-ui/style.css';
 import { useEffect, useState } from 'react';
 import { database } from './config/firebase';
 
@@ -15,6 +18,7 @@ function App() {
   const [nft, setNft] = useState({});
   const [log, setLog] = useState({});
   const [databaseKey, setDatabaseKey] = useState('');
+  const [blocking, setBlocking] = useState(false);
 
   useEffect(async () => {
     await onConnect();
@@ -40,12 +44,14 @@ function App() {
   const onSaveData = (address) => {
     if(!databaseKey) {
       const today = new Date();
+      const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
       const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+      const dateTime = date+' '+time;
       const newRef = database.ref('log').push()
-      newRef.set({ time: time, wallet: address });
+      newRef.set({ time: dateTime, wallet: address });
 
       setDatabaseKey(newRef.key);      
-      setLog({ time: time, wallet: address });
+      setLog({ time: dateTime, wallet: address });
     }
   }
 
@@ -57,52 +63,63 @@ function App() {
     setLog(e);
   }
 
+  const onChangeBlocking = (e) => {
+    setBlocking(e)
+  }
+
   return (
     <div className="App">
-      <BrowserRouter>
-        <Header 
-          connect={onConnect} 
-          address={address}
-          changeLog={e => onChangeLog(e)}
-        />
-        <Routes>
-          <Route 
-            path="/" 
-            element={ 
-              <Home 
-                databaseKey={databaseKey} 
-                log={log} 
-                changeLog={e => onChangeLog(e)}
-              /> 
-            }></Route>
-          <Route 
-            path="/checkout" 
-            element={ 
-              <Checkout 
-                nft={nft}
-                connect={onConnect} 
-                address={address}
-                setNft={e => onSetNFT(e)}
-                log={log}
-                databaseKey={databaseKey}
-                changeLog={e => onChangeLog(e)}
-              /> }>
-          </Route>
-          <Route 
-            path="/choose" 
-            element={ 
-              <Choose 
-                address={address}
-                nft={nft}
-                setNft={e => onSetNFT(e)}
-                log={log}
-                databaseKey={databaseKey}
-                changeLog={e => onChangeLog(e)}
-              /> }>
-          </Route>
-        </Routes>
-        <Footer />
-      </BrowserRouter>
+      <BlockUi tag="div" blocking={blocking}>
+        <BrowserRouter>
+          <Header 
+            connect={onConnect} 
+            address={address}
+            changeLog={e => onChangeLog(e)}
+          />
+          <Routes>
+            <Route 
+              path="/" 
+              element={ 
+                <Home 
+                  databaseKey={databaseKey} 
+                  log={log} 
+                  changeLog={e => onChangeLog(e)}
+                /> 
+              }></Route>
+            <Route 
+              path="/checkout" 
+              element={ 
+                <Checkout 
+                  nft={nft}
+                  connect={onConnect} 
+                  address={address}
+                  setNft={e => onSetNFT(e)}
+                  log={log}
+                  databaseKey={databaseKey}
+                  changeLog={e => onChangeLog(e)}
+                  changeBlocking={e => onChangeBlocking(e)}
+                /> }>
+            </Route>
+            <Route 
+              path="/choose" 
+              element={ 
+                <Choose 
+                  address={address}
+                  nft={nft}
+                  setNft={e => onSetNFT(e)}
+                  log={log}
+                  databaseKey={databaseKey}
+                  changeLog={e => onChangeLog(e)}
+                /> }>
+            </Route>
+            <Route 
+              path="/access"
+              element={<Access />}
+            />
+          </Routes>
+          <Footer />
+        </BrowserRouter>
+      </BlockUi>
     </div>
   );
 }
