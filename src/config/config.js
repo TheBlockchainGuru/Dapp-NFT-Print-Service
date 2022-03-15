@@ -1,6 +1,6 @@
 export const config =  
     {
-        receiver_address: '0xCFcf89d136f4377Fae3d1475b2d647780922d190',
+        receiver_address: '0xE333f81F4E1dC2ab9B5E1F253c8D8c6D6939E0DD',
         chain_id: "mainnet",
         value: "104000000000000000",
     }
