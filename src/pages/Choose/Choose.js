@@ -7,6 +7,7 @@ import {NotificationContainer, NotificationManager} from 'react-notifications';
 import { database } from '../../config/firebase';
 import './Choose.scss';
 import 'react-notifications/lib/notifications.css';
+import { ConstructionSharp } from '@mui/icons-material';
 
 const contracts = require('../../config/nfts.json');
 
@@ -31,6 +32,8 @@ const Choose = ({address, setNft, log, databaseKey, changeLog}) => {
             navigate('/');
         }
         let newCollections = [...collections];
+
+        contracts.sort((a, b) => a.name.localeCompare(b.name))
 
         for(let i in contracts) {
             const oneContract = contracts[i];
@@ -106,6 +109,9 @@ const Choose = ({address, setNft, log, databaseKey, changeLog}) => {
             if(isExist < 0) {
                 let newCollections = [...collections];
                 newCollections.push({name: metaData.data.collection.name, value: selContract})
+
+                newCollections.sort((a, b) => a.name.localeCompare(b.name))
+
                 setCollections(newCollections)
             }
 
@@ -157,7 +163,7 @@ const Choose = ({address, setNft, log, databaseKey, changeLog}) => {
                         >This field is required.</div>
                     </div>
                     <div className="choose-nft-wallet">
-                        <input type="text" placeholder="Enter wallet address" value={contract} onChange={onChangeContract} />
+                        <input type="text" placeholder="Enter contract address" value={contract} onChange={onChangeContract} />
                     </div>
                     <div className="choose-nft-individual">
                         <input type="text" placeholder="Token ID" onChange={onSetTokenID} value={tokenID} />

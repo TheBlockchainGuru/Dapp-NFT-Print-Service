@@ -22,7 +22,15 @@ function App() {
 
   useEffect(async () => {
     await onConnect();
-  }, [] )
+
+    if(window.ethereum) {
+      
+      window.ethereum.on('accountsChanged', async function (accounts) {
+        await onConnect();
+      })
+    }
+    
+  }, [address] )
 
   const onConnect = async () => {
     if(window.ethereum) {
