@@ -9,7 +9,7 @@ import './Choose.scss';
 import 'react-notifications/lib/notifications.css';
 import { ConstructionSharp } from '@mui/icons-material';
 
-const contracts = require('../../config/nfts.json');
+const contracts = require('../../config/collections.json');
 
 const Choose = ({address, setNft, log, databaseKey, changeLog}) => {
     const Web3Api = useMoralisWeb3Api();
