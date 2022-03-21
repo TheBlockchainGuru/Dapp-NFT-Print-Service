@@ -20,7 +20,7 @@ const Header = ({ connect, address }) => {
             </div>
             <div className="links">
                 <div className="link">
-                    NFT Prints are exclusive, high-quality, framed prints in about an inch passe-partout. 
+                    NFT Prints are exclusive, high-quality, framed prints <strong>(12 x 16 inches)</strong> in about an inch passe-partout. 
                     It will elegantly display your piece of art alongside the collection name and token ID of your NFT. 
                     The official NFT Prints name on it will prove that you've own it at some point in time to all its gazers.
                     - By the NFT space, for the NFT space.
