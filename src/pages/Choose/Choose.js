@@ -29,26 +29,31 @@ const Choose = ({address, setNft, log, databaseKey, changeLog}) => {
     useEffect( () => {
 
         if( !address ) {
-            navigate('/');
+            // navigate('/');
+            NotificationManager.error('Connect wallet to proceed', '', 5000);
+        } else {
+            let newCollections = [...collections];
+
+            contracts.sort((a, b) => a.name.localeCompare(b.name))
+
+            for(let i in contracts) {
+                const oneContract = contracts[i];
+
+                newCollections
+                    .push(
+                        { name: oneContract.name, value: oneContract.contract }
+                    )
+            }
+
+            setCollections(newCollections)
         }
-        let newCollections = [...collections];
-
-        contracts.sort((a, b) => a.name.localeCompare(b.name))
-
-        for(let i in contracts) {
-            const oneContract = contracts[i];
-
-            newCollections
-                .push(
-                    { name: oneContract.name, value: oneContract.contract }
-                )
-        }
-
-        setCollections(newCollections)
     }, [] )
 
     const onVerify = async () => {
-        if(!collection) {
+        if(!address) {
+            NotificationManager.error('Connect wallet to proceed', '', 5000);
+        }
+        else if(!collection) {
             setCollectionError(true)
         } else if(!tokenID) {
             setTokenError(true)

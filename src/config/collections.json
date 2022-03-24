@@ -12,10 +12,6 @@
     "contract": "0x69b9c98e8d715c25b330d0d4eb07e68cbb7f6cfc"
   },
   {
-    "name": "3Landers",
-    "contract": "0x69b9c98e8d715c25b330d0d4eb07e68cbb7f6cfc"
-  },
-  {
     "name": "Doodles",
     "contract": "0x8a90cab2b38dba80c64b7734e58ee1db38b8992e"
   },
@@ -482,10 +478,6 @@
   {
     "name": "KILLAz",
     "contract": "0x21850dCFe24874382B12d05c5B189F5A2ACF0E5b"
-  },
-  {
-    "name": "24px",
-    "contract": "0x495f947276749Ce646f68AC8c248420045cb7b5e"
   },
   {
     "name": "Stoner Ape Club",
@@ -1494,10 +1486,6 @@
   {
     "name": "Save the Martians",
     "contract": "0x4961DB588Dd962abB20927Aa38fA33E5225B3be2"
-  },
-  {
-    "name": "NFTheo Legacy",
-    "contract": "0x495f947276749Ce646f68AC8c248420045cb7b5e"
   },
   {
     "name": "Ben Mezrich Project",
