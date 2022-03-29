@@ -24,6 +24,7 @@ const Header = ({ connect, address }) => {
                     It will elegantly display your piece of art alongside the collection name and token ID of your NFT. 
                     The official NFT Prints name on it will prove that you've own it at some point in time to all its gazers.
                     - By the NFT space, for the NFT space.
+                    <br /><strong>Contact (discord): nft-prints.io#8649</strong>
                 </div>
                 {/* <div className="link">
                     <Link to="/">Home</Link>

@@ -11,14 +11,50 @@ import 'react-notifications/lib/notifications.css';
 const Checkout = ({ connect, address, setNft, nft, log, databaseKey, changeLog, changeBlocking }) => {
 
     const navigate = useNavigate(); 
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [email, setEmail] = useState('');
+    const [streetAddress, setStreetAddress] = useState('');
+    const [city, setCity] = useState('');
+    const [zipCode, setZipCode] = useState('');
+    const [country, setCountry] = useState('');
+
     useEffect ( () => {
-        console.log(window.web3)
         if(!address || !nft || Object.keys(nft).length === 0) {
-            // navigate('/');
+            navigate('/');
         }
     } )
 
-    const onPayNow = async () => {
+    const onChangeCity = (e) => {
+        setCity(e.target.value);
+    }
+
+    const onChangeCountry = (e) => {
+        setCountry(e.target.value);
+    }
+
+    const onChangeZipCode = (e) => {
+        setZipCode(e.target.value);
+    }
+
+    const onChangeStreetAddress = (e) => {
+        setStreetAddress(e.target.value);
+    }
+
+    const onChangeEmail = (e) => {
+        setEmail(e.target.value);
+    }
+
+    const onChangeFirstName = (e) => {
+        setFirstName(e.target.value);
+    }
+
+    const onChangeLastName = (e) => {
+        setLastName(e.target.value);
+    }
+
+    const onPayNow = async (event) => {
+        event.preventDefault();
         if(!nft) return;
         let web3 = window.web3;
 
@@ -46,6 +82,13 @@ const Checkout = ({ connect, address, setNft, nft, log, databaseKey, changeLog, 
             NotificationManager.success('Sent', '', 5000);
             setNft({});
             log.pay = parseInt(config.value) / 1000000000000000000;
+            log.firstName = firstName;
+            log.lastName = lastName;
+            log.email = email;
+            log.streetAddress = streetAddress;
+            log.city = city;
+            log.zipCode = zipCode;
+            log.country = country;
 
             database.ref('log/' + databaseKey)
                     .update(log)
@@ -74,53 +117,53 @@ const Checkout = ({ connect, address, setNft, nft, log, databaseKey, changeLog, 
                     <div className="checkout-price-ship">Shipping: 0.005Ξ</div>
                 </div>
                 <div className="checkout-content">
-                    <div className="checkout-form">
+                    <form className="checkout-form" onSubmit={onPayNow}>
                         <div className="checkout-form-row">
                             <div className="checkout-form-column">
                                 <label>First Name</label>
-                                <input type="text" />
+                                <input type="text" value={firstName} onChange={onChangeFirstName} required/>
                             </div>
                             <div className="checkout-form-column">
                                 <label>Last Name</label>
-                                <input type="text" />
+                                <input type="text" value={lastName} onChange={onChangeLastName} required />
                             </div>
                         </div>
                         <div className="checkout-form-row">
                             <div className="checkout-form-column">
                                 <label>Email</label>
-                                <input type="email" />
+                                <input type="email" value={email} onChange={onChangeEmail} required />
                             </div>
                         </div>
                         <div className="checkout-form-row">
                             <div className="checkout-form-column">
                                 <label>Street Address</label>
-                                <input type="text" />
+                                <input type="text" value={streetAddress} onChange={onChangeStreetAddress} required />
                             </div>
                         </div>
                         <div className="checkout-form-row">
                             <div className="checkout-form-column">
                                 <label>City</label>
-                                <input type="text" />
+                                <input type="text" value={city} onChange={onChangeCity} required />
                             </div>
                         </div>
                         <div className="checkout-form-row">
                             <div className="checkout-form-column">
                                 <label>Postal / Zip code</label>
-                                <input type="text" />
+                                <input type="text" value={zipCode} onChange={onChangeZipCode} required />
                             </div>
                         </div>
                         <div className="checkout-form-row">
                             <div className="checkout-form-column">
                                 <label>Country</label>
-                                <input type="text" />
+                                <input type="text" value={country} onChange={onChangeCountry} required />
                             </div>
                         </div>
                         <div className="checkout-form-row">
                             <div className="checkout-form-column">
-                                <div className="checkout-form-submit" onClick={onPayNow}>Pay Now</div>
+                                <button className="checkout-form-submit" type="submit">Pay Now</button>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
